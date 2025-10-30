@@ -24,10 +24,10 @@ public class TestCoche {
 
 		// ----------------------- CREAR COCHE ----------------------- //
 //		Coche c1 = new Coche();
-//		c1.setMatricula("0101LLL");
-//		c1.setMarca("Toyota");
-//		c1.setModelo("Rav-4");
-//		c1.setPotencia(210);
+//		c1.setMatricula("7171DJF");
+//		c1.setMarca("Honda");
+//		c1.setModelo("Jazz");
+//		c1.setPotencia(90);
 //		// Añadimos el objeto nuevo a la BD
 //		miSesion.persist(c1);
 //		// Hacemos commit para que guarde los datos definitivamente
@@ -45,17 +45,36 @@ public class TestCoche {
 //			buscarCoche.setMarca("BMW");
 //			// Realizamos persist() y commit()
 //			miSesion.persist(buscarCoche);
+		// ----------------------- REMOVE ----------------------- //
+//			// Elimina un objeto de la BD buscado previamente (find)
+//			miSesion.remove(buscarCoche);
 //			transaction.commit();
 //		} else
 //			System.out.println("COCHE NO ENCONTRADO");
+		// ----------------------- MERGE ----------------------- //
+//		// Creamos coche
+//		Coche cocheMerge = new Coche();
+//		// Cambiamos el valor del ID a un ID EXISTENTE en la base de datos.
+//		// Si dicho ID no existe, saltará excepción
+//		// Se puede realizar merge sin hacer un setID y actuará como un persist
+//		// Si existe el ID, cambiará los datos de dicho registro (UPDATE)
+//		cocheMerge.setId(1L);
+//		cocheMerge.setMatricula("0");
+//		cocheMerge.setMarca("H");
+//		cocheMerge.setModelo("j");
+//		cocheMerge.setPotencia(500);
+//		miSesion.merge(cocheMerge);
+//		transaction.commit();
 		// ----------------------- LISTAMOS COCHES ----------------------- //
-		// Creamos una lista de coches que, mediante el createQuery en HQL, llamamos a
-		// todos los coches, indicandole la entidad (Coche.class) y la transformamos en
-		// una lista con list()
+//		// Creamos una lista de coches que, mediante el createQuery en HQL, llamamos a
+//		// todos los coches, indicandole la entidad (Coche.class) y la transformamos en
+//		// una lista con list()
 		List<Coche> coches = miSesion.createQuery("from Coche", Coche.class).list();
 		for (Coche coche : coches) {
 			System.out.println(coche.getMarca() + " - " + coche.getMatricula());
+//			miSesion.remove(coche); // Elimianr todos los coches de la BD
 		}
+		transaction.commit();
 		// Cerramos recursos
 		miSesion.close();
 		sesionFactory.close();
