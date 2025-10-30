@@ -6,8 +6,8 @@
 	<session-factory>
 		<property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mariadb://localhost:3306/bd_hibernate</property>
-		<property name="connection.username"><!-- USUARIO --></property>
-		<property name="connection.password"><!-- PASSWORD --></property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">ivanV</property>
 		<!-- Crea y modifica las tablas si es necesario -->
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- Mostrar por consola y para depurar -->
