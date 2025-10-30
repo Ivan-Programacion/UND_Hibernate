@@ -60,4 +60,12 @@ public class Coche implements Serializable {
 	public void setPotencia(int potencia) {
 		this.potencia = potencia;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }
