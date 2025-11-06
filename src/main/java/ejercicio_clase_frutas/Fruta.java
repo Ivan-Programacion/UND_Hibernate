@@ -2,10 +2,12 @@ package ejercicio_clase_frutas;
 
 import java.io.Serializable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Fruta implements Serializable{
@@ -17,6 +19,16 @@ public class Fruta implements Serializable{
 	private int peso;
 	private int color;
 	private boolean buenAspecto;
+	@OneToOne (cascade = { CascadeType.ALL })
+	private Bicho bicho;
+
+	public Bicho getBicho() {
+		return bicho;
+	}
+
+	public void setBicho(Bicho bicho) {
+		this.bicho = bicho;
+	}
 
 	public Long getId() {
 		return id;
