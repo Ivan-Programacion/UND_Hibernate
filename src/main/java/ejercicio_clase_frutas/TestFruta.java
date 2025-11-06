@@ -142,9 +142,10 @@ public class TestFruta {
 			System.out.println("(vacío)");
 		} else {
 			for (Fruta fruta : listaFrutas) {
-				System.out.printf("ID: %d | Fruta: %s | Peso: %d | Número color: %d | Estado: %s", fruta.getId(),
-						fruta.getNombre(), fruta.getPeso(), fruta.getColor(),
-						fruta.isBuenAspecto() ? "Buen estado" : "Mal estado");
+				System.out.printf("ID: %d | Fruta: %s | Peso: %d | Número color: %d | Estado: %s | Bicho: %s",
+						fruta.getId(), fruta.getNombre(), fruta.getPeso(), fruta.getColor(),
+						fruta.isBuenAspecto() ? "Buen estado" : "Mal estado",
+						fruta.getBicho() != null ? fruta.getBicho().getTipo() : "No tiene");
 				System.out.println();
 			}
 		}
@@ -163,8 +164,33 @@ public class TestFruta {
 		System.out.println("2. No");
 		int respuesta = sc.nextInt();
 		nuevaFruta.setBuenAspecto(respuesta == 1 ? true : false);
+		// Añadiendo Bicho
+		System.out.println("La fruta tiene bicho?");
+		System.out.println("1. Sí");
+		System.out.println("2. No");
+		respuesta = sc.nextInt();
+		Bicho bicho;
+		if (respuesta == 1) {
+			bicho = new Bicho();
+			System.out.println("Tipo de bicho:");
+			sc.nextLine();
+			String respuesta2 = sc.nextLine();
+			bicho.setTipo(respuesta2);
+			System.out.println("Tamaño:");
+			respuesta = sc.nextInt();
+			bicho.setTamanio(respuesta);
+			System.out.println("Está vivo?");
+			System.out.println("1. Sí");
+			System.out.println("2. No");
+			respuesta = sc.nextInt();
+			bicho.setVivo(respuesta == 1 ? true : false);
+		} else
+			bicho = null;
+		nuevaFruta.setBicho(bicho);
 		System.out.println("Añadiendo fruta a la lista...");
 		miSesion.persist(nuevaFruta);
+		if (bicho != null)
+			miSesion.persist(bicho);
 		System.out.println("Fruta añadida con éxtio");
 	}
 }
