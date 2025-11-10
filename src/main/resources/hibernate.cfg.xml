@@ -18,5 +18,7 @@
 		<mapping class="coche_hibernate.Coche" />
 		<mapping class="ejercicio_clase_frutas.Fruta" />
 		<mapping class="ejercicio_clase_frutas.Bicho" />
+		<mapping class="practicando.Personaje" />
+		<mapping class="practicando.Arma" />
 	</session-factory>
 </hibernate-configuration>
